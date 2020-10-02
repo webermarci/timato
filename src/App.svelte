@@ -37,10 +37,14 @@
     return m + ":" + s;
   }
 
+  async function requestPermission() {
+    if (Notification.permission !== "denied") {
+      await Notification.requestPermission();
+    }
+  }
+
   function testNotification() {
-    console.log("test notification");
     Notification.requestPermission((result) => {
-      console.log(result);
       if (result === "granted") {
         navigator.serviceWorker.ready.then((registration) => {
           registration.showNotification("Vibration Sample", {
@@ -53,6 +57,7 @@
   }
 
   selectEvent(0);
+  requestPermission();
 
   setInterval(() => {
     if (started && remainingSeconds > 0) {
@@ -107,7 +112,5 @@
       on:click={() => (started = !started)}>
       {started ? 'Pause 💤' : 'Start 🍅'}
     </button>
-
-    <button on:click={testNotification}>Test notification</button>
   </div>
 </main>
