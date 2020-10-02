@@ -1,6 +1,4 @@
 <script>
-  import moment from "moment";
-
   let started = false;
   let currentEvent, remainingSeconds;
   let sessionCount = 0;
@@ -8,15 +6,15 @@
   const events = [
     {
       name: "Session",
-      duration: 25 * 60,
+      duration: 25,
     },
     {
       name: "Short break",
-      duration: 5 * 60,
+      duration: 5,
     },
     {
       name: "Long break",
-      duration: 20 * 60,
+      duration: 20,
     },
   ];
 
@@ -43,17 +41,15 @@
     }
   }
 
-  function testNotification() {
-    Notification.requestPermission((result) => {
-      if (result === "granted") {
-        navigator.serviceWorker.ready.then((registration) => {
-          registration.showNotification("Vibration Sample", {
-            body: "Buzz! Buzz!",
-            tag: "vibration-sample",
-          });
+  function sendNotification() {
+    if (Notification.permission === "granted") {
+      navigator.serviceWorker.ready.then((registration) => {
+        registration.showNotification("Vibration Sample", {
+          body: "Buzz! Buzz!",
+          tag: "vibration-sample",
         });
-      }
-    });
+      });
+    }
   }
 
   selectEvent(0);
@@ -69,12 +65,15 @@
         sessionCount++;
 
         if (sessionCount >= 4) {
+          sendNotification();
           selectEvent(2);
           sessionCount = 0;
         } else {
+          sendNotification();
           selectEvent(1);
         }
       } else {
+        sendNotification();
         selectEvent(0);
       }
     }
