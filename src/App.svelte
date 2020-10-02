@@ -41,12 +41,13 @@
     }
   }
 
-  function sendNotification(text) {
+  function sendNotification(title, body) {
     if (Notification.permission === "granted") {
       navigator.serviceWorker.ready.then((registration) => {
-        registration.showNotification("Timato", {
-          body: text,
-          tag: "timato",
+        registration.showNotification(title, {
+          body: body,
+          dateOfArrival: Date.now(),
+          primaryKey: Math.random(),
         });
       });
     }
@@ -70,9 +71,12 @@
         } else {
           selectEvent(1);
         }
-        sendNotification("Your working sesson is over!");
+        sendNotification(
+          "Your working sesson is over!",
+          "Enjoy your well deserved break!"
+        );
       } else {
-        sendNotification("Your break is over!");
+        sendNotification("Your break is over!", "You should get back to work!");
         selectEvent(0);
       }
     }
