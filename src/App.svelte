@@ -38,7 +38,9 @@
   }
 
   function testNotification() {
+    console.log("test notification");
     Notification.requestPermission((result) => {
+      console.log(result);
       if (result === "granted") {
         navigator.serviceWorker.ready.then((registration) => {
           registration.showNotification("Vibration Sample", {
@@ -105,5 +107,7 @@
       on:click={() => (started = !started)}>
       {started ? 'Pause 💤' : 'Start 🍅'}
     </button>
+
+    <button on:click={testNotification}>Test notification</button>
   </div>
 </main>
