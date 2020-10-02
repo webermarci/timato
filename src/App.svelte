@@ -1,4 +1,6 @@
 <script>
+  import TomatoSvg from "./TomatoSvg.svelte";
+
   let started = false;
   let currentEvent, remainingSeconds;
   let sessionCount = 0;
@@ -6,15 +8,15 @@
   const events = [
     {
       name: "Session",
-      duration: 25,
+      duration: 25 * 60,
     },
     {
       name: "Short break",
-      duration: 5,
+      duration: 5 * 60,
     },
     {
       name: "Long break",
-      duration: 20,
+      duration: 20 * 60,
     },
   ];
 
@@ -85,10 +87,9 @@
 
 <main class="md:flex md:justify-center md:items-center md:h-screen">
   <div class="h-screen md:h-auto max-w-md p-5 flex flex-col justify-center">
-    <h1
-      class="text-6xl text-red-800 text-center"
-      style="margin-bottom: -1.75rem">
+    <h1 class="flex justify-center text-5xl text-red-800 text-center -mb-5">
       Timato
+      <TomatoSvg />
     </h1>
 
     <div class="p-4 bg-red-100 rounded-t-lg shadow">
@@ -112,7 +113,7 @@
     <button
       class="text-xl tracking-wider p-4 rounded-b-lg shadow {started ? 'bg-blue-500 text-blue-900' : 'bg-green-500 text-green-900'}"
       on:click={() => (started = !started)}>
-      {started ? 'Pause 💤' : 'Start 🍅'}
+      {#if started}Pause{:else}Start{/if}
     </button>
   </div>
 </main>
