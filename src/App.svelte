@@ -41,12 +41,12 @@
     }
   }
 
-  function sendNotification() {
+  function sendNotification(text) {
     if (Notification.permission === "granted") {
       navigator.serviceWorker.ready.then((registration) => {
-        registration.showNotification("Vibration Sample", {
-          body: "Buzz! Buzz!",
-          tag: "vibration-sample",
+        registration.showNotification("Timato", {
+          body: text,
+          tag: "timato",
         });
       });
     }
@@ -65,15 +65,14 @@
         sessionCount++;
 
         if (sessionCount >= 4) {
-          sendNotification();
           selectEvent(2);
           sessionCount = 0;
         } else {
-          sendNotification();
           selectEvent(1);
         }
+        sendNotification("Your working sesson is over!");
       } else {
-        sendNotification();
+        sendNotification("Your break is over!");
         selectEvent(0);
       }
     }
