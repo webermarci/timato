@@ -88,7 +88,7 @@
 <main class="md:flex md:justify-center md:items-center md:h-screen">
   <div class="h-screen md:h-auto max-w-md p-5 flex flex-col justify-center">
     <h1
-      class="flex justify-center items-center text-5xl text-red-800 text-center -mb-5">
+      class="flex justify-center items-center text-5xl text-red-800 text-center -mb-2">
       Timato
       <TomatoSvg />
     </h1>
