@@ -1,4 +1,5 @@
 <script>
+  import TailwindCSS from "./TailwindCSS.svelte";
   import TomatoSvg from "./TomatoSvg.svelte";
 
   let started = false;
@@ -89,11 +90,11 @@
   <div class="h-screen md:h-auto max-w-md p-5 flex flex-col justify-center">
     <h1
       class="flex justify-center items-center text-5xl text-red-800 text-center -mb-2">
-      Timato
+      timato
       <TomatoSvg />
     </h1>
 
-    <div class="p-4 bg-red-100 rounded-t-lg shadow">
+    <div class="p-4 bg-white rounded-t-lg shadow">
       <div class="grid grid-cols-2 gap-2 items-center">
         <div>
           <h1 class="text-4xl text-center">
@@ -112,9 +113,11 @@
     </div>
 
     <button
-      class="text-xl tracking-wider p-4 rounded-b-lg shadow {started ? 'bg-blue-500 text-blue-900' : 'bg-green-500 text-green-900'}"
+      class="font-bold text-xl tracking-wider p-4 rounded-b-lg shadow {started ? 'bg-blue-500 text-blue-900' : 'bg-green-500 text-green-900'}"
       on:click={() => (started = !started)}>
       {#if started}Pause{:else}Start{/if}
     </button>
   </div>
 </main>
+
+<TailwindCSS />
